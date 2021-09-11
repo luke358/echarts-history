@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="lib/echarts.min.js"></script>
+</head>
+
+<body>
+  <div style="width: 600px;height:400px"></div>
+  <script>
+    //1. ECharts最基本的代码结构
+    //2. x轴数据:['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    //3. y轴数据:[88, 92, 63, 77, 94, 80, 72, 86]
+    //4. 将type的值设置为bar
+    var mCharts = echarts.init(document.querySelector("div")) // 初始化echarts实例对象
+    var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强'] // 准备x轴数据
+    var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86] // 为x轴每一个元素指明数据
+    var option = {
+      xAxis:{
+        type:'value',
+      },
+      yAxis:{
+        type:'category',
+        data: xDataArr
+      },
+      series:[
+        {
+          name:'语文',
+          type:'bar',
+          markPoint:{
+            data: [
+              {
+                type:'max',name:"最大值"
+              },{
+                type:'min',name:'最小值'
+              }
+            ]
+          },
+          markLine:{
+            data:[
+              {
+                type:'average',name:'平均值'
+              }
+            ]
+          },
+          label:{
+            show:true, //在图上显示具体的值
+            rotate:60,  //文字旋转
+            position:'top'
+          },
+          barWidth:'30%',
+          data: yDataArr
+        }
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>
